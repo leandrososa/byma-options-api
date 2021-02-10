@@ -3,7 +3,7 @@ const cheerio = require("cheerio");
 
 const URL_TO_SCRAPE = "https://www.allaria.com.ar/Opcion";
 
-async function main(underlying) {
+exports.getOptions = async function (underlying) {
     const result = await request.get(URL_TO_SCRAPE);
     const $ = cheerio.load(result);
     const scrapedData = [];
@@ -49,6 +49,7 @@ async function main(underlying) {
     });
     //console.log(scrapedData);
     let data = JSON.stringify(scrapedData);
+    return data;
     //fs.writeFileSync('calls-ggal.json', data);
 
     //let date_ob = new Date();
