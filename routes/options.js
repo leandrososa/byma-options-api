@@ -4,10 +4,9 @@ var options = require('../utils/options.js')
 var router = express.Router();
 
 /* options funtionality */
-router.get('/api/:underlying', function(req, res, next) {
-    const getOptions = options.getOptions(req.params.categoryId);
-    res.json(getOptions);
-    //res.render('index', { title: 'Express' });
+router.get('/:underlying', async function(req, res, next) {
+    const getOptions = await options.getOptions(req.params.underlying);
+    res.send(getOptions);
 });
 
 module.exports = router;
