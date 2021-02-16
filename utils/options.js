@@ -15,8 +15,6 @@ const getOptions = async function (underlying) {
     let data;
 
     await getData().then($ => { 
-        //const result = await request.get(URL_TO_SCRAPE);
-        //const $ = cheerio.load(result);
         const scrapedData = [];
         const tableHeaders = [];
         
@@ -39,7 +37,6 @@ const getOptions = async function (underlying) {
             const tds = $(element).find("td:nth-child(4), td:nth-child(5), td:nth-child(6), td:nth-child(13)"); // Get desired grid fields
             const tableRow = {};
             $(tds).each((i, element) => {
-                //tableRow[tableHeaders[i]] = $(element).text().replace(/\s/g,'');
                 if (i === 0) {
                     var arrayFecha = $(element).text().replace(/\s/g, '').split("/", 3);
                     tableRow[tableHeaders[i]] = arrayFecha[2] + '-' + arrayFecha[1] + '-' + arrayFecha[0];
@@ -60,8 +57,7 @@ const getOptions = async function (underlying) {
             scrapedData.push(tableRow);
         });
         
-        data = JSON.stringify(scrapedData);
-        console.log('resolvio la Promise')
+        data = scrapedData;
     });
 
     return data;

@@ -6,7 +6,7 @@ var router = express.Router();
 /* options funtionality */
 router.get('/:underlying', async function(req, res, next) {
     const getOptions = await options.getOptions(req.params.underlying);
-    res.send(getOptions);
+    res.json(getOptions);
 });
 
 module.exports = router;
