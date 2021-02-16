@@ -6,6 +6,12 @@
 Simple API to get options data from a specific BYMA security, made in Express.js and using Cheerio, Request and Jest.
 Currently retrieves expiration date, strike price, last option price and volume for <b>call options</b> only.
 
+## Live
+
+[Test the API](https://byma-options-api.herokuapp.com/api/GGAL)
+
+## Develop
+
 ### Install
 
     npm install
