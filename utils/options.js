@@ -17,19 +17,20 @@ const getOptions = async function (underlying) {
     await getData().then($ => { 
         const scrapedData = [];
         const tableHeaders = [];
+        const translateHeader = {
+            'vencimiento': 'expiration_date',
+            'precioejercicio': 'strike_price',
+            'ltimoprecioprima': 'option_last_price',
+            'volumenmonto': 'volume'
+        }
         
 
         $(`table#tableOpcionesAcciones > thead > tr, table#tableOpcionesAcciones > tbody > tr.${underlying}.accion-Call`).each((index, element) => {
             if (index === 0) {
                 const ths = $(element).find("th:nth-child(4), th:nth-child(5), th:nth-child(6), th:nth-child(13)");
                 $(ths).each((i, element) => {
-                    tableHeaders.push(
-                        $(element)
-                            .text()
-                            .toLowerCase()
-                            .replace(/\s/g, '')
-                            .replace(/[^a-zA-Z ]/g, "")
-                    );
+                    let translatedName = translateHeader[$(element).text().toLowerCase().replace(/\s/g, '').replace(/[^a-zA-Z ]/g, "")];
+                    tableHeaders.push(translatedName);
                 });
                 return true;
             }
@@ -50,8 +51,12 @@ const getOptions = async function (underlying) {
                     tableRow[tableHeaders[i]] = parseFloat(stringBase2);
                 } else {
                     var stringBase3 = $(element).text().replace(/\s/g, '').replace('.', '').replace('.', '').replace(',', '.');
-                    tableRow[tableHeaders[i]] = parseFloat(stringBase3);
-
+                    if (stringBase3 == '') {
+                        tableRow[tableHeaders[i]] = 0;
+                    } else {
+                        tableRow[tableHeaders[i]] = parseFloat(stringBase3);
+                    }
+                    
                 }
             });
             scrapedData.push(tableRow);
