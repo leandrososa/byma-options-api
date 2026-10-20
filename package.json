@@ -2,21 +2,22 @@
   "name": "byma-options-api",
   "version": "0.0.0",
   "private": true,
+  "engines": {
+    "node": ">=20.18.1"
+  },
   "scripts": {
     "start": "node ./bin/www",
-    "test": "jest"
+    "test": "jest --runInBand"
   },
   "dependencies": {
-    "cheerio": "^1.0.0-rc.10",
-    "cookie-parser": "~1.4.4",
-    "debug": "~2.6.9",
-    "express": "~4.16.1",
-    "http-errors": "~1.6.3",
-    "morgan": "~1.9.1",
-    "request": "^2.88.2",
-    "request-promise": "^4.2.6"
+    "cheerio": "^1.2.0",
+    "cookie-parser": "^1.4.7",
+    "debug": "^4.4.3",
+    "express": "^5.2.1",
+    "morgan": "^1.11.0"
   },
   "devDependencies": {
-    "jest": "^26.6.3"
+    "jest": "^30.4.2",
+    "supertest": "^7.2.2"
   }
 }

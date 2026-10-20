@@ -17,4 +17,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/api', scraping);
 
+app.use(function(error, req, res, next) {
+  if (res.headersSent) {
+    return next(error);
+  }
+
+  console.error(error);
+  return res.status(502).json({ error: 'Options data is temporarily unavailable' });
+});
+
 module.exports = app;

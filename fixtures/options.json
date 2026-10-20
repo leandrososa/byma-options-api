@@ -1,0 +1,24 @@
+{
+  "GGAL": [
+    {
+      "expiration_date": "2026-08-21",
+      "strike_price": 8200,
+      "option_last_price": 145.5,
+      "volume": 1250000
+    },
+    {
+      "expiration_date": "2026-10-16",
+      "strike_price": 9000,
+      "option_last_price": 98.25,
+      "volume": 640000
+    }
+  ],
+  "BMA": [
+    {
+      "expiration_date": "2026-08-21",
+      "strike_price": 12500,
+      "option_last_price": 210,
+      "volume": 375000
+    }
+  ]
+}
